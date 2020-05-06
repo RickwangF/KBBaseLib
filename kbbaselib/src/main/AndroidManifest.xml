@@ -2,4 +2,14 @@
     package="com.kbit.kbbaselib" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application>
+        <provider
+            android:authorities="${applicationId}.AppContextProvider"
+            android:name=".context.AppContextProvider"
+            android:exported="false"/>
+    </application>
+
 </manifest>

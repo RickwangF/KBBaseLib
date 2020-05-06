@@ -2,7 +2,9 @@ package com.kbit.kbbaselib.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class DateUtil {
@@ -42,6 +44,11 @@ public class DateUtil {
         } else {
             return date.getTime();
         }
+    }
+
+    public static boolean isLeapYear() {
+        GregorianCalendar calendar = (GregorianCalendar) GregorianCalendar.getInstance();
+        return calendar.isLeapYear(calendar.get(Calendar.YEAR));
     }
 
     public static int getNowYear() {

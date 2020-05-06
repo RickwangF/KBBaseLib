@@ -4,13 +4,19 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.kbit.kbbaselib.util.DateUtil;
+import com.kbit.kbbaselib.util.DeviceUtil;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +35,15 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        int year = DateUtil.getNowYear();
+        Log.e("date", "year is " + year);
+
+        String androidId = DeviceUtil.getAndroidId();
+
+        String IMEIID = DeviceUtil.getIMEI();
+
+        Log.e("deviceID", "androidId is " + androidId + " IMEIID is " + IMEIID);
+
     }
 
     @Override
