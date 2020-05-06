@@ -1,0 +1,3 @@
+rootProject.name='KBBaseLib'
+include ':app'
+include ':kbbaselib'
