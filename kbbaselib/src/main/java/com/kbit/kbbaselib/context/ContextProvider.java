@@ -1,6 +1,7 @@
 package com.kbit.kbbaselib.context;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
 
 public class ContextProvider {
@@ -28,5 +29,9 @@ public class ContextProvider {
         }
 
         return instance.mContext;
+    }
+
+    public static Application getApplication() {
+        return (Application) getContext().getApplicationContext();
     }
 }
