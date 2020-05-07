@@ -69,6 +69,7 @@ public class ActivityManager implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public void onActivityResumed(@NonNull Activity activity) {
+        Log.e(TAG, "currentActivity is " + activity.getLocalClassName());
         instance.currentActivity = activity;
         isForeground = true;
         isPaused = false;
