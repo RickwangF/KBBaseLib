@@ -153,7 +153,7 @@ public class BasePreference {
         return instance.gson.fromJson(jsonString, tClass);
     }
 
-    public <T> List<T> getList(String key, Class<List<T>> listClass) {
+    public <T> List<T> getList(String key, Class<T> listClass) {
         if (StringUtil.isEmpty(key)) {
             return null;
         }
@@ -162,7 +162,8 @@ public class BasePreference {
         if (StringUtil.isEmpty(jsonString)) {
             return null;
         }
-        return instance.gson.fromJson(jsonString, listClass);
+        Type type = new TypeToken<List<T>>(){}.getType();
+        return instance.gson.fromJson(jsonString, type);
     }
 
     public <K, V> Map<K, V> getMap(String key, Class<K> keyClass, Class<V> valClass) {
