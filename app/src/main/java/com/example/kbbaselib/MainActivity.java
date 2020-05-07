@@ -1,11 +1,14 @@
 package com.example.kbbaselib;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.kbit.kbbaselib.lifecircle.BaseActivity;
+import com.kbit.kbbaselib.permission.PermissionTool;
 import com.kbit.kbbaselib.preference.BasePreference;
 import com.kbit.kbbaselib.util.DateUtil;
 import com.kbit.kbbaselib.util.DeviceUtil;
@@ -24,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +40,11 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                startActivity(intent);
+                List<String> permissions = new ArrayList<>();
+                permissions.add(Manifest.permission.CALL_PHONE);
+                permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                permissions.add(Manifest.permission.SEND_SMS);
+                PermissionTool.requestMultiplePermissions(permissions, MainActivity.this);
             }
         });
         int year = DateUtil.getNowYear();
@@ -50,36 +56,44 @@ public class MainActivity extends AppCompatActivity {
 
         Log.e("deviceID", "androidId is " + androidId + " IMEIID is " + IMEIID);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("test", MODE_PRIVATE);
-        BasePreference basePreference = new BasePreference(sharedPreferences);
-        boolean strResult = basePreference.putString("key", "KEY");
-        if (strResult) {
-            String value = basePreference.getString("key");
-            Log.e("Test", "value is " + value);
-        }
+//        SharedPreferences sharedPreferences = getSharedPreferences("test", MODE_PRIVATE);
+//        BasePreference basePreference = new BasePreference(sharedPreferences);
+//        boolean strResult = basePreference.putString("key", "KEY");
+//        if (strResult) {
+//            String value = basePreference.getString("key");
+//            Log.e("Test", "value is " + value);
+//        }
+//
+//        List<SimpleModel> list = new ArrayList<>();
+//        for (int i=0; i<10; i++) {
+//            SimpleModel model = new SimpleModel();
+//            model.setName("名字" + i);
+//            model.setAvatar("头像" + i);
+//            list.add(model);
+//        }
+//        boolean listResult = basePreference.putList("list", list);
+//        if (listResult) {
+//            List simpleList = basePreference.getList("list", SimpleModel.class);
+//            Log.e("Test", "list is " + JsonUtil.list2Json(simpleList));
+//        }
+//
+//        Map<String, String> map = new HashMap<>();
+//        for (int i=0; i<10; i++) {
+//            map.put("key" + i, String.valueOf(i));
+//        }
+//        boolean mapResult = basePreference.putMap("map", map);
+//        if (mapResult) {
+//            HashMap<String, String> hashMap = (HashMap<String, String>) basePreference.getMap("map", String.class, String.class);
+//            Log.e("Test", "hashMap is " + JsonUtil.map2Json(hashMap));
+//        }
+//
+//        String manufacturer = DeviceUtil.getDeviceManufacturer();
+//        Log.e("Test", "manufacturer is " + manufacturer);
+    }
 
-        List<SimpleModel> list = new ArrayList<>();
-        for (int i=0; i<10; i++) {
-            SimpleModel model = new SimpleModel();
-            model.setName("名字" + i);
-            model.setAvatar("头像" + i);
-            list.add(model);
-        }
-        boolean listResult = basePreference.putList("list", list);
-        if (listResult) {
-            List simpleList = basePreference.getList("list", SimpleModel.class);
-            Log.e("Test", "list is " + JsonUtil.list2Json(simpleList));
-        }
-
-        Map<String, String> map = new HashMap<>();
-        for (int i=0; i<10; i++) {
-            map.put("key" + i, String.valueOf(i));
-        }
-        boolean mapResult = basePreference.putMap("map", map);
-        if (mapResult) {
-            HashMap<String, String> hashMap = (HashMap<String, String>) basePreference.getMap("map", String.class, String.class);
-            Log.e("Test", "hashMap is " + JsonUtil.map2Json(hashMap));
-        }
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override

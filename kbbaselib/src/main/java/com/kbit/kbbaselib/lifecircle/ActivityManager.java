@@ -49,7 +49,7 @@ public class ActivityManager implements Application.ActivityLifecycleCallbacks {
         instance.activities = null;
     }
 
-    public Activity getCurrentActivity() {
+    public static Activity getCurrentActivity() {
         return instance.currentActivity;
     }
 

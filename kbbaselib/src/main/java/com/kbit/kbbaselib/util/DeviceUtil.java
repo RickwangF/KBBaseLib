@@ -91,4 +91,46 @@ public class DeviceUtil {
         }
         return macString;
     }
+
+    /**
+     * 获取厂商名
+     * **/
+    public static String getDeviceManufacturer() {
+        return android.os.Build.MANUFACTURER.toLowerCase();
+    }
+
+    /**
+     * 获取产品名
+     * **/
+    public static String getDeviceProduct() {
+        return android.os.Build.PRODUCT;
+    }
+
+    /**
+     * 获取手机品牌
+     */
+    public static String getDeviceBrand() {
+        return android.os.Build.BRAND;
+    }
+
+    /**
+     * 获取手机型号
+     */
+    public static String getDeviceModel() {
+        return android.os.Build.MODEL;
+    }
+
+    /**
+     * 获取手机主板名
+     */
+    public static String getDeviceBoard() {
+        return android.os.Build.BOARD;
+    }
+
+    /**
+     * 设备名
+     * **/
+    public static String getDeviceDevice() {
+        return android.os.Build.DEVICE;
+    }
 }
