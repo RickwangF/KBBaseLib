@@ -46,6 +46,16 @@ public class DateUtil {
         }
     }
 
+    public static Date getDateFromTimeStamp(int timestamp, boolean isSecond) {
+        Date date = null;
+        if (isSecond) {
+            date.setTime(timestamp * 1000);
+        } else {
+            date.setTime(timestamp);
+        }
+        return date;
+    }
+
     public static boolean isLeapYear() {
         GregorianCalendar calendar = (GregorianCalendar) GregorianCalendar.getInstance();
         return calendar.isLeapYear(calendar.get(Calendar.YEAR));
