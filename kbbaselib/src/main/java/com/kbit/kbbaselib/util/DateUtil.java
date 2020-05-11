@@ -64,7 +64,7 @@ public class DateUtil {
     }
 
     public static Date getDateFromTimeStamp(int timestamp, boolean isSecond) {
-        Date date = null;
+        Date date = new Date();
         if (isSecond) {
             date.setTime(timestamp * 1000);
         } else {
