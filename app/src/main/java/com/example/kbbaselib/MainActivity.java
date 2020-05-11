@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +57,10 @@ public class MainActivity extends BaseActivity {
 
         Log.e("deviceID", "androidId is " + androidId + " IMEIID is " + IMEIID);
 
+        Date date = new Date();
+        String formatString = "yyyy-MM-dd";
+        String dateString = DateUtil.getDateStringFromDate(date, formatString);
+        Log.e("Date String", "date string is " + dateString);
 //        SharedPreferences sharedPreferences = getSharedPreferences("test", MODE_PRIVATE);
 //        BasePreference basePreference = new BasePreference(sharedPreferences);
 //        boolean strResult = basePreference.putString("key", "KEY");

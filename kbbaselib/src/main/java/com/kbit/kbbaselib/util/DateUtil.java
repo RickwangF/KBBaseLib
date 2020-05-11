@@ -15,6 +15,23 @@ public class DateUtil {
         return dateFormat.format(date);
     }
 
+    public static String getDateStringFromDate(Date date, String format) {
+        String dateString = "";
+        String formatString = format;
+        if (date == null) {
+            return dateString;
+        }
+
+        if (StringUtil.isEmpty(format)) {
+            formatString = "yyyy-MM-dd HH:mm:ss:SSS";
+        }
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.CHINA);
+        dateString = dateFormat.format(date);
+
+        return dateString;
+    }
+
     public static Date dateFromString(String string, String format) {
         if (StringUtil.isEmpty(string)) {
             return new Date();
