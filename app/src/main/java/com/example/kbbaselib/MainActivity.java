@@ -57,10 +57,12 @@ public class MainActivity extends BaseActivity {
 
         Log.e("deviceID", "androidId is " + androidId + " IMEIID is " + IMEIID);
 
-        Date date = new Date();
-        String formatString = "yyyy-MM-dd";
-        String dateString = DateUtil.getDateStringFromDate(date, formatString);
-        Log.e("Date String", "date string is " + dateString);
+        long timestamp = 1588855251 + 4 * 24 * 3600 + 18 * 3600 + 48 * 60;
+        Date date = DateUtil.getDateFromTimeStamp(timestamp, true);
+        String dateString = DateUtil.getDateStringFromDate(date, "yyyy-MM-dd HH:mm:ss");
+        Log.e("DateString", "date string is " + dateString);
+
+        Log.e("DateString", "relative date string is " + DateUtil.getRelativeTimeStringFromNow(date));
 //        SharedPreferences sharedPreferences = getSharedPreferences("test", MODE_PRIVATE);
 //        BasePreference basePreference = new BasePreference(sharedPreferences);
 //        boolean strResult = basePreference.putString("key", "KEY");
