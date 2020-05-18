@@ -132,6 +132,14 @@ public class BasePreference {
         return instance.mPreferences.getString(key, "");
     }
 
+    public boolean getBoolean(String key) {
+        if (StringUtil.isEmpty(key)) {
+            return false;
+        }
+
+        return instance.mPreferences.getBoolean(key, false);
+    }
+
     public Set<String> getStringSet(String key) {
         if (StringUtil.isEmpty(key)) {
             return null;
