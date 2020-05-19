@@ -10,5 +10,7 @@ public class BaseApplication extends Application {
         ActivityManager.registerLifeCicleCallback();
     }
 
+    public void openLoginActivity() {
 
+    }
 }
