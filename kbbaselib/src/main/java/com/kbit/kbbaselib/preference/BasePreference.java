@@ -1,6 +1,7 @@
 package com.kbit.kbbaselib.preference;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -90,6 +91,7 @@ public class BasePreference {
         }
 
         String listString = instance.gson.toJson(list);
+        Log.e("Json", "List json is " + listString);
         return instance.mPreferences.edit().putString(key, listString).commit();
     }
 
