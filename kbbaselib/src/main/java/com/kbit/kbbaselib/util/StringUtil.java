@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringUtil {
     public static boolean isEmpty(String string) {
@@ -100,5 +102,22 @@ public class StringUtil {
             res.append(random.nextInt(10));
         }
         return res.toString();
+    }
+
+    public static String mobileReg = "^(1[3,4,5,7,8,9])\\d{9}$";
+
+    /**
+     * 检查手机号是否合法
+     *
+     * @param mobile
+     * @return
+     */
+    public static boolean isMobileNum(String mobile) {
+        if (mobile.length() != 11) {
+            return false;
+        }
+        Pattern p = Pattern.compile(mobileReg);
+        Matcher m = p.matcher(mobile);
+        return m.matches();
     }
 }
