@@ -14,8 +14,10 @@ import android.util.Log;
 import androidx.core.app.ActivityCompat;
 
 import com.kbit.kbbaselib.context.ContextProvider;
+import com.kbit.kbbaselib.encrypt.EncryptTool;
 
 import java.net.NetworkInterface;
+import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
 import java.util.List;
 
@@ -46,9 +48,11 @@ public class DeviceUtil {
         }
         return imeiString;
     }
-
+    @SuppressLint({"HardwareIds", "MissingPermission"})
     public static String getAndroidId() {
-        return Settings.System.getString(ContextProvider.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        String androidID = Settings.Secure.getString(ContextProvider.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        String id = androidID + Build.SERIAL;
+        return EncryptTool.get32MD5(id);
     }
 
     @SuppressLint({"MissingPermission", "HardwareIds"})
