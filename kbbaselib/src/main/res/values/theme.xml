@@ -28,7 +28,7 @@
         <item name="windowActionModeOverlay">true</item>
         <item name="spinnerStyle">@style/BaseTheme.Widget.Spinner</item>
 
-        <item name="android:homeAsUpIndicator">@drawable/ic_back</item>
+        <item name="android:homeAsUpIndicator">@drawable/icon_back</item>
 
     </style>
 
