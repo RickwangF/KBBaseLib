@@ -53,6 +53,10 @@ public class ActivityManager implements Application.ActivityLifecycleCallbacks {
         return instance.currentActivity;
     }
 
+    public static LinkedList<Activity> getActivityList() {
+        return instance.activities;
+    }
+
     public boolean isForeground() {
         return isForeground;
     }
