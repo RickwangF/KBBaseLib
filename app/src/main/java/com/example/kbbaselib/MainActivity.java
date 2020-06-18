@@ -13,6 +13,7 @@ import com.kbit.kbbaselib.preference.BasePreference;
 import com.kbit.kbbaselib.util.DateUtil;
 import com.kbit.kbbaselib.util.DeviceUtil;
 import com.kbit.kbbaselib.util.JsonUtil;
+import com.kbit.kbbaselib.util.PackageUtil;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -63,6 +64,14 @@ public class MainActivity extends BaseActivity {
         Log.e("DateString", "date string is " + dateString);
 
         Log.e("DateString", "relative date string is " + DateUtil.getRelativeTimeStringFromNow(date));
+
+        String packageName = PackageUtil.getPackageName(this);
+        Log.e("Package", "packageName is " + packageName);
+
+        List<String> classNames = PackageUtil.getClasses(this, packageName);
+        for (String className: classNames) {
+            Log.e("Package", "className is " + className);
+        }
 //        SharedPreferences sharedPreferences = getSharedPreferences("test", MODE_PRIVATE);
 //        BasePreference basePreference = new BasePreference(sharedPreferences);
 //        boolean strResult = basePreference.putString("key", "KEY");
