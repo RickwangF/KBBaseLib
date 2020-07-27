@@ -69,7 +69,11 @@ public class DisplayUtil {
         if (bitmap != null) {
             try {
                 // 获取内置SD卡路径
-                String sdCardPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath();
+                String sdCardPath = "";
+                if (context.getExternalCacheDir() != null) {
+                    sdCardPath = context.getExternalCacheDir().getPath();
+                }
+                 //Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath();
                 // 图片文件路径
                 path = sdCardPath + File.separator + System.currentTimeMillis() + ".jpg";
 
