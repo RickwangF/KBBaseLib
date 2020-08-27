@@ -10,7 +10,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.kbit.kbbaselib.context.ContextProvider;
 import com.kbit.kbbaselib.util.ListUtil;
 
 import java.util.LinkedList;
@@ -40,7 +39,7 @@ public class ActivityManager implements Application.ActivityLifecycleCallbacks {
     }
 
     public static void registerLifeCicleCallback() {
-        ((Application)ContextProvider.getContext()).registerActivityLifecycleCallbacks(instance);
+        BaseApplication.getContext().registerActivityLifecycleCallbacks(instance);
     }
 
     public static void resignLifeCircleCallback() {
@@ -63,6 +62,7 @@ public class ActivityManager implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
+        instance.currentActivity = activity;
         instance.activities.add(activity);
     }
 
@@ -74,7 +74,7 @@ public class ActivityManager implements Application.ActivityLifecycleCallbacks {
     @Override
     public void onActivityResumed(@NonNull Activity activity) {
         Log.e(TAG, "currentActivity is " + activity.getLocalClassName());
-        instance.currentActivity = activity;
+
         isForeground = true;
         isPaused = false;
     }

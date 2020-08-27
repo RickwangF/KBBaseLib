@@ -12,13 +12,21 @@ import com.kbit.kbbaselib.util.StringUtil;
 
 public class BaseApplication extends Application {
 
+    private static BaseApplication mContext;
+
+
     @Override
     public void onCreate() {
         super.onCreate();
+        mContext = this;
         ActivityManager.registerLifeCicleCallback();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             webViewSetPath(getApplicationContext());
         }
+    }
+
+    public static BaseApplication getContext() {
+        return mContext;
     }
 
     @RequiresApi(api = 28)

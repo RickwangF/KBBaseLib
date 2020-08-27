@@ -4,23 +4,19 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.kbit.kbbaselib.BuildConfig;
-import com.kbit.kbbaselib.context.ContextProvider;
-import com.kbit.kbbaselib.lifecircle.ActivityManager;
-import com.kbit.kbbaselib.lifecircle.BaseActivity;
+import com.kbit.kbbaselib.lifecircle.BaseApplication;
 import com.kbit.kbbaselib.util.DeviceUtil;
 import com.kbit.kbbaselib.util.PackageUtil;
 import com.kbit.kbbaselib.util.ToastUtil;
@@ -37,7 +33,7 @@ public class PermissionTool {
 
     private static final int MULTIPLE_PERMISSION = 2;
 
-    private static String packageName = PackageUtil.getPackageName(ContextProvider.getContext());
+    private static String packageName = PackageUtil.getPackageName(BaseApplication.getContext());
 
     private static String getPermissionChineseDesc(String permission) {
         String desc = "";

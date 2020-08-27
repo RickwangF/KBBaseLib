@@ -1,23 +1,16 @@
 package com.kbit.kbbaselib.util;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Service;
-import android.content.ContentProvider;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.provider.Settings;
-import android.provider.Telephony;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import androidx.core.app.ActivityCompat;
-
-import com.kbit.kbbaselib.context.ContextProvider;
 import com.kbit.kbbaselib.encrypt.EncryptTool;
+import com.kbit.kbbaselib.lifecircle.BaseApplication;
 
 import java.net.NetworkInterface;
-import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,10 +18,10 @@ public class DeviceUtil {
 
     @SuppressLint({"MissingPermission", "HardwareIds"})
     public static String getIMEI() {
-        TelephonyManager telephonyManager = (TelephonyManager) ContextProvider.getContext().getSystemService(Service.TELEPHONY_SERVICE);
+        TelephonyManager telephonyManager = (TelephonyManager) BaseApplication.getContext().getSystemService(Service.TELEPHONY_SERVICE);
         String imeiString = "";
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-            imeiString = Settings.System.getString(ContextProvider.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+            imeiString = Settings.System.getString(BaseApplication.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {
                 assert telephonyManager != null;
@@ -50,7 +43,7 @@ public class DeviceUtil {
     }
     @SuppressLint({"HardwareIds", "MissingPermission"})
     public static String getAndroidId() {
-        String androidID = Settings.Secure.getString(ContextProvider.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        String androidID = Settings.Secure.getString(BaseApplication.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         String id = androidID + Build.SERIAL;
         return EncryptTool.get32MD5(id);
     }
@@ -59,7 +52,7 @@ public class DeviceUtil {
     public static String getSerialNumber() {
         String serialString = "";
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-            serialString = Settings.System.getString(ContextProvider.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+            serialString = Settings.System.getString(BaseApplication.getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             serialString = Build.getSerial();
         } else {

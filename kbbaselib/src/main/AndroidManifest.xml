@@ -29,11 +29,6 @@
 <!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
 <!--    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />-->
 
-    <application>
-        <provider
-            android:authorities="${applicationId}.AppContextProvider"
-            android:name=".context.AppContextProvider"
-            android:exported="false"/>
-    </application>
+    <application></application>
 
 </manifest>

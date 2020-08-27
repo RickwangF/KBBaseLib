@@ -1,15 +1,11 @@
 package com.kbit.kbbaselib.lifecircle;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import com.kbit.kbbaselib.context.ContextProvider;
 
 public class BaseFragment extends Fragment {
 
@@ -22,7 +18,7 @@ public class BaseFragment extends Fragment {
     }
 
     public Context getBaseContext() {
-        return mContext == null ? ContextProvider.getContext() : mContext;
+        return mContext == null ?  BaseApplication.getContext() : mContext;
     }
 
     public boolean hideSoftInput() {

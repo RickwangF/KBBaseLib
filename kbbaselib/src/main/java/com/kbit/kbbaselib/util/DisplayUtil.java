@@ -3,12 +3,11 @@ package com.kbit.kbbaselib.util;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.kbit.kbbaselib.context.ContextProvider;
+import com.kbit.kbbaselib.lifecircle.BaseApplication;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -52,7 +51,7 @@ public class DisplayUtil {
     }
 
     private static DisplayMetrics getDisplayMetrics() {
-        WindowManager windowManager = (WindowManager) ContextProvider.getContext().getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager)  BaseApplication.getContext().getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics displayMetrics = new DisplayMetrics();
         assert windowManager != null;
         windowManager.getDefaultDisplay().getMetrics(displayMetrics);
