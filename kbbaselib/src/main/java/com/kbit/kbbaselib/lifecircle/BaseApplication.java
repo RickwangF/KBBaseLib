@@ -17,15 +17,15 @@ public class BaseApplication extends Application {
         super.onCreate();
         ActivityManager.registerLifeCicleCallback();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            webViewSetPath(getBaseContext());
+            webViewSetPath(getApplicationContext());
         }
     }
 
     @RequiresApi(api = 28)
     public void webViewSetPath(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            String processName = PackageUtil.getProcessName(getBaseContext());
-            String packageName = PackageUtil.getPackageName(getBaseContext());
+            String processName = PackageUtil.getProcessName(getApplicationContext());
+            String packageName = PackageUtil.getPackageName(getApplicationContext());
             if (!StringUtil.isEmpty(processName) && !StringUtil.isEmpty(packageName) && !packageName.equals(processName)){//判断不等于默认进程名称
                 WebView.setDataDirectorySuffix(processName);
             }

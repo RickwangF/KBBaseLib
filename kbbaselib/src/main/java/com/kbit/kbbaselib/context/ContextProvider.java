@@ -22,7 +22,7 @@ public class ContextProvider {
         if (instance == null) {
             Context context = AppContextProvider.mContext;
             if (context == null) {
-                throw new IllegalStateException("ApplicationContextProvider context is null");
+                //throw new IllegalStateException("ApplicationContextProvider context is null");
             }
 
             instance = new ContextProvider(context);
